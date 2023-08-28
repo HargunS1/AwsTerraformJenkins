@@ -3,6 +3,10 @@ provider "aws" {
   access_key = "AKIAZYRLZZ47ZON3VA2P"
   secret_key = "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"
 }
+
+resource "aws_vpc" "default" {
+  cidr_block = "10.0.0.0/16"
+}
 resource "aws_instance" "tfvm" {
   ami = "ami-0885b1f6bd170450c"
   instance_type = "t2.micro"
@@ -18,6 +22,7 @@ resource "aws_instance" "tfvm" {
 }
 resource "aws_security_group" "websg" {
   name = "web-sg01"
+  vpc_id = aws_vpc.default.id 
   ingress {
     protocol = "tcp"
     from_port = 8080
