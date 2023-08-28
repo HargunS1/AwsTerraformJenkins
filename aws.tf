@@ -8,6 +8,6 @@ provider "aws" {
 
 
 resource "aws_instance" "tfvm" {
-  ami = "ami-01dd271720c1ba44f"
+  ami = "ami-053b0d53c279acc90"
   instance_type = "t2.micro"
   }
