@@ -14,7 +14,6 @@ resource "aws_instance" "tfvm" {
   ami = "ami-01dd271720c1ba44f"
   instance_type = "t2.micro"
   vpc_security_group_ids = [ aws_security_group.websg.id ]
-  subnet_id = aws_subnet.default.id
   user_data = <<-EOF
                 #!/bin/bash
                 echo "I LOVE TERRAFORM" > index.html
