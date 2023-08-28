@@ -7,10 +7,18 @@ provider "aws" {
 resource "aws_vpc" "default" {
   cidr_block = "10.0.0.0/16"
 }
+
+resource "aws_subnet" "custom" {
+  vpc_id     = aws_vpc.custom.id
+  cidr_block = "10.0.1.0/24"
+}
+
+
 resource "aws_instance" "tfvm" {
   ami = "ami-01dd271720c1ba44f"
   instance_type = "t2.micro"
   vpc_security_group_ids = [ aws_security_group.websg.id ]
+  subnet_id = aws_subnet.custom.id
   user_data = <<-EOF
                 #!/bin/bash
                 echo "I LOVE TERRAFORM" > index.html
@@ -22,7 +30,7 @@ resource "aws_instance" "tfvm" {
 }
 resource "aws_security_group" "websg" {
   name = "web-sg01"
-  vpc_id = aws_vpc.default.id 
+   vpc_id = aws_vpc.custom.id
   ingress {
     protocol = "tcp"
     from_port = 8080
