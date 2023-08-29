@@ -31,5 +31,5 @@ variable "public_subnet_cidr" {
 variable "aws_az" {
   type        = string
   description = "AWS AZ"
-  default     = "eu-west-1c"
+  default     = "us-east-1a"
 }
