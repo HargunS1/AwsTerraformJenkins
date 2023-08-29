@@ -74,7 +74,7 @@ resource "aws_security_group" "example_sg" {
   }
 }
 
-resource "aws_instance" "example_instance" {
+resource "aws_instance" "linux-server" {
   ami           = "ami-053b0d53c279acc90"  # Ubuntu 20.04 LTS in us-east-1; change as needed
   instance_type = "t2.micro"
   subnet_id                   = aws_subnet.public-subnet.id
