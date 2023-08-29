@@ -1,0 +1,5 @@
+aws_access_key = "AKIAZYRLZZ47ZON3VA2P"
+aws_secret_key = "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"
+aws_region     = "us-east-1"
+app_name       = "kopicloud"
+app_environment = "dev"
