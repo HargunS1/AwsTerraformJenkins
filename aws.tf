@@ -14,24 +14,6 @@ provider "aws" {
   region     =  var.aws_region
 }
 
-
-resource "tls_private_key" "key_pair" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-
-# Create the Key Pair
-resource "aws_key_pair" "key_pair" {
-  key_name   = "${lower(var.app_name)}-${lower(var.app_environment)}-linux-${lower(var.aws_region)}"  
-  public_key = tls_private_key.key_pair.public_key_openssh
-}
-
-# Save file
-resource "local_file" "ssh_key" {
-  filename = "${aws_key_pair.key_pair.key_name}.pem"
-  content  = tls_private_key.key_pair.private_key_pem
-}
-
 # Application Definition 
 app_name        = "kopicloud" # Do NOT enter any spaces
 app_environment = "dev"       # Dev, Test, Staging, Prod, etc
@@ -78,6 +60,26 @@ variable "public_subnet_cidr" {
   type        = string
   description = "CIDR for the public subnet"
   default     = "10.1.64.0/24"
+}
+
+
+
+
+resource "tls_private_key" "key_pair" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+# Create the Key Pair
+resource "aws_key_pair" "key_pair" {
+  key_name   = "${lower(var.app_name)}-${lower(var.app_environment)}-linux-${lower(var.aws_region)}"  
+  public_key = tls_private_key.key_pair.public_key_openssh
+}
+
+# Save file
+resource "local_file" "ssh_key" {
+  filename = "${aws_key_pair.key_pair.key_name}.pem"
+  content  = tls_private_key.key_pair.private_key_pem
 }
 
 
