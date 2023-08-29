@@ -27,40 +27,9 @@ aws_access_key = "AKIAZYRLZZ47ZON3VA2P"
 aws_secret_key = "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" 
 aws_region     = "us-east-1"
 
-variable "aws_access_key" {
-  type = string
-  description = "AKIAZYRLZZ47ZON3VA2P"
-}
-
-variable "aws_secret_key" {
-  type = string
-  description = "suOPrAo+y0bncrqnpCVRcgTZfMg50ydFsv/qzcrf"
-}
-
-variable "aws_region" {
-  type = string
-  description = "us-east-1"
-}
 
 
-variable "app_environment" {
-  type        = string
-  description = "Application environment"
-}
 
-# VPC Variables
-variable "vpc_cidr" {
-  type        = string
-  description = "CIDR for the VPC"
-  default     = "10.1.64.0/18"
-}
-
-# Subnet Variables
-variable "public_subnet_cidr" {
-  type        = string
-  description = "CIDR for the public subnet"
-  default     = "10.1.64.0/24"
-}
 
 
 
